@@ -1,0 +1,13 @@
+.root {
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+.centerTextField {
+  align-self: center;
+}
+.mx {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}

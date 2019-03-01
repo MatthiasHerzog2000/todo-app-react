@@ -1,26 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component, Fragment} from 'react';
 import './App.css';
 
+import {Route, Switch} from 'react-router';
+import Details from './Views/Details';
+import Navbar from './Components/Navbar';
+import AppointmentProvider from './Context/AppointmentProvider';
+import ConnectHomeWithContext from './Views/Home';
+const routes = [
+  {
+    path: '/',
+    component: ConnectHomeWithContext
+  }, {
+    path: '/list-details/:id',
+    component: Details
+  }
+]
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <AppointmentProvider>
+        <Fragment>
+          <Navbar></Navbar>
+          <Switch>
+            {routes.map((route) => (
+              <Route key={route.path} exact path={route.path} component={route.component}></Route>
+            ))}
+          </Switch>
+        </Fragment>
+      </AppointmentProvider>
     );
   }
 }
